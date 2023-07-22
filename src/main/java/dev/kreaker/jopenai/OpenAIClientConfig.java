@@ -11,6 +11,7 @@ import feign.RequestInterceptor;
 import feign.Retryer;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
+import java.util.concurrent.TimeUnit;
 
 @Configuration
 @ConfigurationProperties
@@ -38,7 +39,8 @@ public class OpenAIClientConfig {
 
     @Bean
     public Request.Options options() {
-        return new Request.Options(getConnectTimeOut(), getConnectTimeOut());
+        //return new Request.Options(getConnectTimeOut(), getConnectTimeOut());
+        return new Request.Options(getConnectTimeOut(), TimeUnit.MILLISECONDS, getReadTimeOut(), TimeUnit.MILLISECONDS, true);
     }
 
     @Bean
@@ -49,5 +51,9 @@ public class OpenAIClientConfig {
     @Bean
     public Retryer retryer() {
         return new Retryer.Default();
+    }
+
+    public void someThingsToDo() {
+        log.info("Some things to do");
     }
 }

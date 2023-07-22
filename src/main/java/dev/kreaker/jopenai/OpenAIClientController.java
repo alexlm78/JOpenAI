@@ -18,6 +18,4 @@ public class OpenAIClientController {
     public ChatGPTResponse chat(@RequestBody ChatRequest chatRequest) {
         return openAIClientService.chat(chatRequest);
     }
-
 }
-
